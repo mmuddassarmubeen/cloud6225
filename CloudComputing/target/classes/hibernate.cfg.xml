@@ -6,12 +6,14 @@
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.password">password</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/employee</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dept_employee</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
 		<property name="hibernate.show_sql">true</property>
-		<mapping resource="neu/edu/lab08/model/User.hbm.xml" />
+
+		<mapping class="com.neu.cloud.model.Employee" />
+
 	</session-factory>
 </hibernate-configuration>
