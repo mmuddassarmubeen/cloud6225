@@ -2,33 +2,72 @@ package com.neu.cloud.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="employees")
 public class Employee {
-	private int emp_no;
-	private Date from_date;
-	private Date to_date;
 
-	public int getEmp_no() {
-		return emp_no;
+	@Id
+	@Column(name="emp_no", unique=true, nullable=false)
+    @GeneratedValue(strategy=GenerationType.TABLE)
+	private int empId;
+	
+	@Column(name="first_name")
+	private String firstname;
+	
+	@Column(name="last_name")
+	private String lastname;
+	
+	@Column(name="hire_date")
+	private Date hireDate;
+	
+	@Column(name="birth_date")
+	private Date birthDate;
+
+	public int getEmpId() {
+		return empId;
 	}
 
-	public void setEmp_no(int emp_no) {
-		this.emp_no = emp_no;
+	public void setEmpId(int empId) {
+		this.empId = empId;
 	}
 
-	public Date getFrom_date() {
-		return from_date;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFrom_date(Date from_date) {
-		this.from_date = from_date;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public Date getTo_date() {
-		return to_date;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setTo_date(Date to_date) {
-		this.to_date = to_date;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
+	public Date getHireDate() {
+		return hireDate;
+	}
+
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}	
+	
 }

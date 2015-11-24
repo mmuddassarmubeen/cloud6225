@@ -9,18 +9,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DAO
-{
-	private static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-	private static final ThreadLocal sessionThread = new ThreadLocal();
+
+
+
+public  class DAO {
 	
+private static final Logger log = Logger.getAnonymousLogger();
+    
+	private static final ThreadLocal sessionThread = new ThreadLocal();
+    private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+
     protected DAO() {
     }
 
     public static Session getSession()
     {
         Session session = (Session) DAO.sessionThread.get();
-    
+        
         if (session == null)
         {
             session = sessionFactory.openSession();
@@ -29,18 +34,15 @@ public class DAO
         return session;
     }
 
-    protected void begin()
-    {
+    protected void begin() {
         getSession().beginTransaction();
     }
 
-    protected void commit()
-    {
+    protected void commit() {
         getSession().getTransaction().commit();
     }
 
-    protected void rollback()
-    {
+    protected void rollback() {
         try {
             getSession().getTransaction().rollback();
         } catch (HibernateException e) {
@@ -54,12 +56,9 @@ public class DAO
         DAO.sessionThread.set(null);
     }
 
-    public static void close()
-    {
+    public static void close() {
         getSession().close();
         DAO.sessionThread.set(null);
     }
-    private static final Logger log = Logger.getAnonymousLogger();
-
-    
-}
+		
+	}
