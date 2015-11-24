@@ -5,5 +5,5 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<bean id="empoyeeDao" class="com.neu.cloud.dao.EmployeeDao"></bean>
+	<bean id="employeeDao" class="com.neu.cloud.dao.EmployeeDao"></bean>
 </beans>
