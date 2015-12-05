@@ -132,11 +132,13 @@ public class HomeController {
 		
 		ProcessBuilder pb = new ProcessBuilder("python", "/Users/Muddassar/Documents/GitHub/CSYE6225/webclient.py");
 		pb.directory(new File("/usr/bin/"));
+		Process p = null;
 		try {
-			Process p = pb.start();
+			 p = pb.start();
 			p.waitFor();
 			int exit = p.exitValue();
 			System.out.println(exit);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -144,6 +146,9 @@ public class HomeController {
 		 catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			p.destroy();
 		}
 		return true;
 	}
