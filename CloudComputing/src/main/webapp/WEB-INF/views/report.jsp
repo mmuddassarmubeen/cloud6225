@@ -43,7 +43,17 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 		     bDestroy: true,
 		});
 	  });
-  }
+  };
+  
+  function healthcheck()
+  {
+	  $.post( "healthCheck")
+	  .done(function( data ) {
+		  alert(data);
+	  });
+	  
+	  
+  };
   </script>
 </head>
 <body>
@@ -93,6 +103,9 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 							
 				<div class="form-group col-lg-12">
 					<button id="createEvent" type="button" class="btn btn-primary" onclick="loadData()">Search</button>
+				</div>
+				<div class="form-group col-lg-12">
+					<button id="healthcheckId" type="button" class="btn btn-primary" onclick="healthcheck()">Simulate 2 users</button>
 				</div>
 			</div>
 		

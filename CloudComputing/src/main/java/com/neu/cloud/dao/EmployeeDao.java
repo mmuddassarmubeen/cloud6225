@@ -1,5 +1,6 @@
 package com.neu.cloud.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -42,5 +43,35 @@ public class EmployeeDao extends DAO{
             throw new Exception("Could not get user " + lastName, e);
         }
 	}
+	
+	public List<Employee> queryEmployees()
+            throws Exception {
+        try {
+      //      begin();
+        	
+        	Criteria criteria = getSession().createCriteria(Employee.class);
+            
+            
+        	List<Employee> employeeList = null;
+            
+            try
+    		{
+            	employeeList =  criteria.list().subList(0, 10);
+    			
+    		}
+    		catch(Exception ex)
+    		{
+    			System.out.println("Exception occured" + ex.getCause().getMessage());
+    		}
+    		System.out.println(employeeList.size());
+            
+           return employeeList;
+           
+        } catch (HibernateException e) {
+     //       rollback();
+            throw new Exception("Could not get user ", e);
+        }
+	}
+	
 
 }

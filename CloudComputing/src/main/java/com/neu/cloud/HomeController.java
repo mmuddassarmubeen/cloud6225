@@ -1,5 +1,11 @@
 package com.neu.cloud;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -32,7 +38,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -44,9 +50,9 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
-	}
+	}*/
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -81,6 +87,22 @@ public class HomeController {
 		return "report";
 	}
 	
+	@RequestMapping(value = "/healthreport", method = RequestMethod.GET)
+	public @ResponseBody List<Employee> healthreport() {
+		
+		EmployeeDao emp = new EmployeeDao();
+		
+		List<Employee> empList = null;
+		try {
+			empList = emp.queryEmployees();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(empList.get(0).getLastname());
+		return empList;
+	}
+	
 	@RequestMapping(value = "/report", method = RequestMethod.POST)
 	public @ResponseBody List<Employee> report(@RequestParam String lastName) {
 		
@@ -102,6 +124,28 @@ public class HomeController {
 		}
 		System.out.println(empList.get(0).getLastname());
 		return empList;
+	}
+	
+	@RequestMapping(value = "/healthCheck", method = RequestMethod.POST)
+	public @ResponseBody boolean healthCheck() {
+		
+		
+		ProcessBuilder pb = new ProcessBuilder("python", "/Users/Muddassar/Documents/GitHub/CSYE6225/webclient.py");
+		pb.directory(new File("/usr/bin/"));
+		try {
+			Process p = pb.start();
+			p.waitFor();
+			int exit = p.exitValue();
+			System.out.println(exit);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
 }
