@@ -130,7 +130,7 @@ public class HomeController {
 	public @ResponseBody boolean healthCheck() {
 		
 		
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/Muddassar/Documents/GitHub/CSYE6225/webclient.py");
+		ProcessBuilder pb = new ProcessBuilder("python", "/home/ubuntu/webclient.py");
 		pb.directory(new File("/usr/bin/"));
 		Process p = null;
 		try {

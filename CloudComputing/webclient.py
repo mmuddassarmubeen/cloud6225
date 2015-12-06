@@ -4,27 +4,44 @@
 import sys, socket
 
 
-# hard-wire the port number for safety's sake  
-# then take the names of the host and file from the command line  
-port = 8080  
-host = sys.argv[1]  
-filename = sys.argv[2]   
+def simulateClient(num):
+	# hard-wire the port number for safety's sake  
+	# then take the names of the host and file from the command line  
+	port = 8080  
+	#host = sys.argv[1]  
+	#filename = sys.argv[2]   
 
-# create a socket object called 'c'  
-c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   
+	host = 'localhost'  
+	filename = '/cloud/healthreport'
 
-# connect to the socket  
-c.connect((host, port))   
+	# create a socket object called 'c'  
+	c = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   
 
-# create a file-like object to read  
-fileobj = c.makefile('r', 0)   
+	# connect to the socket  
+	c.connect((host, port))   
 
-# Ask the server for the file  
-fileobj.write("GET "+filename+" HTTP/1.0\n\n")   
+	# create a file-like object to read  
+	fileobj = c.makefile('r', 0)   
 
-# read the lines of the file object into a buffer, buff  
-buff = fileobj.readlines()   
+	# Ask the server for the file  
+	fileobj.write("GET "+filename+" HTTP/1.0\n\n")   
 
-# step through the buffer, printing each line  
-for line in buff:  
-	print line
+	# read the lines of the file object into a buffer, buff  
+	buff = fileobj.readlines()   
+
+	# step through the buffer, printing each line  
+	for line in buff:  
+		print line
+
+	fileName = "/home/ubuntu/tmp/myfile" + str(num)
+	f = open(fileName,'w')
+
+	for line in buff:
+		f.write(line)
+	f.close()
+
+
+for num in range(1,3):
+	simulateClient(num);
+
+
