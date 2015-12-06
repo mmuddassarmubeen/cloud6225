@@ -64,11 +64,11 @@
         <h2 class="form-signin-heading">Please sign in</h2>
         
         <label for="inputEmail" class="sr-only">User Name</label>    
-        <input type="text" id="inputEmail" class="form-control" placeholder="User Name" />
+        <input type="text" id="username" name="username" class="form-control" placeholder="User Name" />
         <!--<form:errors path="userName" cssStyle="color:#ff0000"></form:errors>-->
         
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" />
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
         <!--<form:errors path="password" cssStyle="color:#ff0000"/>-->
          <br>
 		 

@@ -46,17 +46,13 @@ public class EmployeeDao extends DAO{
 	
 	public List<Employee> queryEmployees()
             throws Exception {
+		List<Employee> employeeList = null;
         try {
-      //      begin();
         	
-        	Criteria criteria = getSession().createCriteria(Employee.class);
-            
-            
-        	List<Employee> employeeList = null;
-            
+        	Criteria criteria = getSession().createCriteria(Employee.class).setMaxResults(10);
             try
     		{
-            	employeeList =  criteria.list().subList(0, 10);
+            	employeeList =  criteria.list();
     			
     		}
     		catch(Exception ex)
@@ -65,13 +61,51 @@ public class EmployeeDao extends DAO{
     		}
     		System.out.println(employeeList.size());
             
-           return employeeList;
+           
+           
+        } catch (HibernateException e) {
+     //       rollback();
+            throw new Exception("Could not get user ", e);
+        }
+        finally{
+        	close();
+        }
+        return employeeList;
+	}
+	
+	
+	public boolean login(String username, String password)
+            throws Exception {
+        try {
+      //      begin();
+        	
+        	Criteria criteria = getSession().createCriteria(Employee.class).add(Restrictions.eq("lastname",username)).add(Restrictions.eq("firstname",password));
+            
+            
+        	List<Employee> users = null;
+            
+            try
+    		{
+            	users =  criteria.list();
+    			
+    		}
+    		catch(Exception ex)
+    		{
+    			System.out.println("Exception occured" + ex.getCause().getMessage());
+    		}
+            
+            if (users.size() > 0) {
+    			return true;
+    		} else {
+    			return false;
+    		}
            
         } catch (HibernateException e) {
      //       rollback();
             throw new Exception("Could not get user ", e);
         }
 	}
+	
 	
 
 }

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,19 +68,31 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String authenticate(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String authenticate(HttpServletRequest request) 
+	{
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		EmployeeDao emp = new EmployeeDao();
+		boolean result = false;
+		try {
+			
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			 result = emp.login(username, password);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		String formattedDate = dateFormat.format(date);
 		
-		model.addAttribute("serverTime", formattedDate );
+		if(result)
+		{
+			return "/report";
+		}
+		else
+		{
+			return "loginpage";
+		}
 		
-		
-		
-		return "/report";
 	}
 	
 	@RequestMapping(value = "/report", method = RequestMethod.GET)
@@ -127,10 +140,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/healthCheck", method = RequestMethod.POST)
-	public @ResponseBody boolean healthCheck() {
+	public @ResponseBody boolean healthCheck(@RequestParam String userCount) {
 		
 		
-		ProcessBuilder pb = new ProcessBuilder("python", "/home/ubuntu/webclient.py");
+		ProcessBuilder pb = new ProcessBuilder("python", "/Users/Muddassar/Documents/GitHub/CSYE6225/webclient.py",userCount);
 		pb.directory(new File("/usr/bin/"));
 		Process p = null;
 		try {
@@ -138,6 +151,17 @@ public class HomeController {
 			p.waitFor();
 			int exit = p.exitValue();
 			System.out.println(exit);
+			
+			InputStreamReader reader = new InputStreamReader(p.getErrorStream());
+			
+			BufferedReader rd = new BufferedReader(reader);
+			String line = rd.readLine();
+			while(line !=null)
+			{
+				System.out.println(line);
+				line = rd.readLine();
+			}
+			p.getInputStream();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

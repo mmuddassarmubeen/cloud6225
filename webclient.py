@@ -33,7 +33,8 @@ def simulateClient(num):
 	for line in buff:  
 		print line
 
-	fileName = "/home/ubuntu/tmp/myfile" + str(num)
+	c.close()
+	fileName = "/Users/Muddassar/Documents/GitHub/CSYE6225/myfile" + str(num)
 	f = open(fileName,'w')
 
 	for line in buff:
@@ -41,7 +42,8 @@ def simulateClient(num):
 	f.close()
 
 
-for num in range(1,3):
+rep = int(sys.argv[1]) 
+for num in range(0,rep):
 	simulateClient(num);
 
 

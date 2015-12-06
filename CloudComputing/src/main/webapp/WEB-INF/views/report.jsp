@@ -45,9 +45,13 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 	  });
   };
   
-  function healthcheck()
+  function healthcheck(num)
   {
-	  $.post( "healthCheck")
+	  if (num==-1)
+	  {
+		num = document.getElementById("userNumber").value;
+	  }
+	  $.post( "healthCheck",{userCount: num})
 	  .done(function( data ) {
 		  alert(data);
 	  });
@@ -105,7 +109,22 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 					<button id="createEvent" type="button" class="btn btn-primary" onclick="loadData()">Search</button>
 				</div>
 				<div class="form-group col-lg-12">
-					<button id="healthcheckId" type="button" class="btn btn-primary" onclick="healthcheck()">Simulate 2 users</button>
+					<button id="healthcheckthreeId" type="button" class="btn btn-primary" onclick="healthcheck(3)">Simulate 3 users</button>
+				</div>
+				<div class="form-group col-lg-12">
+					<button id="healthchecktenId" type="button" class="btn btn-primary" onclick="healthcheck(10)">Simulate 10 users</button>
+				</div>
+				<div class="form-group col-lg-12">
+					<button id="healthcheckseventeenId" type="button" class="btn btn-primary" onclick="healthcheck(17)">Simulate 17 users</button>
+				</div>
+				<div class="form-group col-lg-12">
+					<button id="healthchecktwentyfourId" type="button" class="btn btn-primary" onclick="healthcheck(24)">Simulate 24 users</button>
+				</div>
+				<div class="form-group col-lg-6">
+					<input name="userNumber" id="userNumber"></input>
+				</div>
+				<div class="form-group col-lg-6">
+					<button id="healthcheckuserinputId" type="button" class="btn btn-primary" onclick="healthcheck(-1)">Simulate  users</button>
 				</div>
 			</div>
 		
