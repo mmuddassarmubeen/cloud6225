@@ -34,7 +34,7 @@ def simulateClient(num):
 		print line
 
 	c.close()
-	fileName = "/home/ubuntu/myfile" + str(num)
+	fileName = "/home/ubuntu/users/myfile" + str(num)
 	f = open(fileName,'w')
 
 	for line in buff:

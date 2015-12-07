@@ -6,18 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Report Page</title>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" 
-href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
 
 <script type="text/javascript" 
-src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
   <script type="text/javascript">
   
@@ -36,9 +36,7 @@ src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 		    aoColumns: [
 					  { sTitle: "Employee ID", mDataProp: "empId" },
 		              { sTitle: "First Name", mDataProp: "firstname" },
-		              { sTitle: "Last Name", mDataProp: "lastname" },
-		              { sTitle: "Hire Date", mDataProp: "hireDate" },
-		              { sTitle: "Birth Date", mDataProp: "birthDate" }
+		              { sTitle: "Last Name", mDataProp: "lastname" }
 		          ],
 		     bDestroy: true,
 		});

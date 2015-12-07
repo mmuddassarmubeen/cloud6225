@@ -142,8 +142,7 @@ public class HomeController {
 	@RequestMapping(value = "/healthCheck", method = RequestMethod.POST)
 	public @ResponseBody boolean healthCheck(@RequestParam String userCount) {
 		
-		
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/Muddassar/Documents/GitHub/CSYE6225/webclient.py",userCount);
+		ProcessBuilder pb = new ProcessBuilder("python", "/home/ubuntu/webclient.py",userCount);
 		pb.directory(new File("/usr/bin/"));
 		Process p = null;
 		try {
