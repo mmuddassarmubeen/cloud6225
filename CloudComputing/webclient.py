@@ -30,20 +30,25 @@ def simulateClient(num):
 	buff = fileobj.readlines()   
 
 	# step through the buffer, printing each line  
-	for line in buff:  
-		print line
+	#for line in buff:  
+	#	print line
 
 	c.close()
-	fileName = "/home/ubuntu/users/myfile" + str(num)
-	f = open(fileName,'w')
+	#fileName = "/home/ubuntu/users/myfile" + str(num)
+	#f = open(fileName,'w')
 
-	for line in buff:
-		f.write(line)
-	f.close()
+	#for line in buff:
+	#	f.write(line)
+	#f.close()
 
 
 rep = int(sys.argv[1])
 for num in range(0,rep):
 	simulateClient(num);
+
+fileName = "/home/ubuntu/users/myfile" + str(rep)
+f = open(fileName,'w')
+f.write("Initiating number of clients: " + str(rep))
+f.close()
 
 

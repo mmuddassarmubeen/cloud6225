@@ -49,7 +49,7 @@ public class EmployeeDao extends DAO{
 		List<Employee> employeeList = null;
         try {
         	
-        	Criteria criteria = getSession().createCriteria(Employee.class).setMaxResults(10);
+        	Criteria criteria = getSession().createCriteria(Employee.class).setMaxResults(5000);
             try
     		{
             	employeeList =  criteria.list();
